@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript" src="/jquery-3.6.0.min.js">
+</script>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
+	<script language="javascript">
+	$(document).ready(function() {
+       //alert("I am JQuery");
+      });
+    function enableDisable(bEnable, textBoxID)
+    {
+
+          if(bEnable){
+           document.getElementById("wifissid").style.display  = 'block'
+           document.getElementById("wifipassword").style.display  = 'block'
+           }else{
+               document.getElementById("wifissid").style.display  = 'none'
+           document.getElementById("wifipassword").style.display  = 'none'
+           }
+    }
+
+   </script>
+</head>
+<body>
+<div >
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Refractor</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container" style="padding-top:100px">
+	<form class="form-horizontal" th:action="@{/genrateQRCode}" method="post"  enctype="multipart/form-data" th:object="${developer}" >
+
+	<div class="mb-3">
+	<label  class="form-label">Component name of admin receiver</label>
+		<input id="firstnameId" type="text" class="form-control"
+			     th:field="*{firstName}"  placeholder="Component name of admin receiver">
+    </div>
+    <div class="mb-3">
+	<label  class="form-label">Download and enrollment Apk URl</label>
+	<input type="text" id="lastNameId" class="form-control" th:field="*{lastName}" placeholder="ADMIN SIGNATURE CHECKSUM">
+    </div>
+	<div class="mb-3">
+			<label  class="form-label">ADMIN SIGNATURE CHECKSUM</label>
+			<input type="text"  id="emailId" class="form-control" th:field="*{email}" placeholder="Download and enrollment Apk URl">
+	</div>
+	<div class="form-check">
+			<input class="form-check-input"    type="checkbox" value="" th:field="*{wifi}" onclick="enableDisable(this.checked, 'div')">
+			<label class="form-check-label" >
+				Wifi
+			</label>
+	</div>
+
+		<div  id="wifissid" class="mb-3" style="display: none;">
+			<label  class="form-label">WIFI_SSID</label>
+			<input type="text"  id="wifissidId" class="form-control" th:field="*{wifissid}"  placeholder="Another input placeholder">
+		</div>
+		<div id="wifipassword" class="mb-3" style="display: none;">
+			<label  class="form-label">WIFI_PASSWORD</label>
+			<input type="text"     id="wifipasswordId" class="form-control" th:field="*{wifipassword}"  placeholder="Another input placeholder">
+		</div>
+
+	<div class="mb-3">
+		<span class="input-group-btn">
+				<button type="submit" class="btn btn-default"  onclick="validate()">Add skill</button>
+		</span>
+		</div>
+	</form>
+
+
+</div>
+
+</body>
+</html>
